@@ -5,17 +5,12 @@
  */
 package hu.elte.keza.issuetracker.entities;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class User extends BaseWithUpdateInfo {
+public class User extends BaseEntity {
     
     @Column
     private String userName;    
@@ -39,20 +34,18 @@ public class User extends BaseWithUpdateInfo {
     @Column
     private String password;
     
+    @JsonIgnore
     @OneToMany(targetEntity = Issue.class, mappedBy = "createdBy")
     private List<Issue> createdIssue;
     
+    @JsonIgnore
     @OneToMany(targetEntity = Issue.class, mappedBy = "updatedBy")
     private List<Issue> updatedIssue;
     
+    @JsonIgnore
     @OneToMany(targetEntity = Message.class, mappedBy = "createdBy")
     private List<Message> createdMessage;
 
-    @OneToMany(targetEntity = User.class, mappedBy = "createdBy")
-    private List<Issue> createdUser;
-    
-    @OneToMany(targetEntity = User.class, mappedBy = "updatedBy")
-    private List<Issue> updatedUser;
 }
 
 

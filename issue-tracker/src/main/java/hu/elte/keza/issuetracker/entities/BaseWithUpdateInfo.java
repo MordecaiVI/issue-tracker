@@ -21,7 +21,7 @@ import lombok.Data;
 public class BaseWithUpdateInfo extends BaseWithCreationInfo {
     @Column(updatable = false, nullable = false)
     private LocalDateTime updatedAt;
-    
+
     @JoinColumn(updatable = false, nullable = false)
     @ManyToOne(targetEntity = User.class)
     private User updatedBy;

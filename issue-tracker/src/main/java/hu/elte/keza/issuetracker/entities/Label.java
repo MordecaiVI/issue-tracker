@@ -5,6 +5,7 @@
  */
 package hu.elte.keza.issuetracker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ public class Label extends BaseWithCreationInfo {
     @Column
     private String label;    
     
+    @JsonIgnore
     @ManyToMany(targetEntity = Issue.class, mappedBy = "label")
     private List<Issue> issue;
     
