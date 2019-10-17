@@ -5,9 +5,7 @@
  */
 package hu.elte.keza.issuetracker.repositories;
 
-import hu.elte.keza.issuetracker.entities.Issue;
-import hu.elte.keza.issuetracker.entities.User;
-import java.util.List;
+import hu.elte.keza.issuetracker.entities.Message;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author ZKereszti
  */
 @Repository
-public interface IssueRepository extends CrudRepository<Issue, Long> {
-    Iterable<Issue> findAllByCreatedBy(User user);
+public interface MessageRepository extends CrudRepository<Message, Long> {
+    
 }

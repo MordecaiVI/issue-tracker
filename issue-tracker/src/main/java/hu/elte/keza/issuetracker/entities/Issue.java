@@ -8,6 +8,8 @@ package hu.elte.keza.issuetracker.entities;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,14 +30,18 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class Issue extends BaseWithUpdateInfo {
 
-    @Column
+    @Column(nullable = false)
     private String title;    
     
-    @Column
+    @Column(nullable = false)
     private String description;
     
-    @Column
+    @Column(nullable = false)
     private String place;
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToMany(targetEntity = Message.class, mappedBy = "issue")
     private List<Message> message;
